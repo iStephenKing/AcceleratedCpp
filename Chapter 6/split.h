@@ -20,7 +20,5 @@ bool not_space(char c);
 // Split a string into vector of words
 std::vector<std::string> split(const std::string& str);
 
-bool isPalindrome(const std::string& s);
-
 
 #endif

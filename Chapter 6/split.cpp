@@ -9,7 +9,6 @@
 */
 
 #include <iostream>
-#include <iterator>
 #include <algorithm>
 
 #include "split.h"
@@ -43,20 +42,4 @@ std::vector<std::string> split(const string& str)
         i = j;
     }
     return ret;
-}
-
-bool isPalindrome(const string& s)
-{
-    return equal(s.begin(), s.end(), s.rbegin());
-}
-
-int main()
-{
-    string s;
-    getline(cin,s);
-    vector<string> vec = split(s);
-    
-    for (vector<string>::const_iterator it = vec.begin(); it != vec.end(); ++it)
-        cout << *it << " " << (isPalindrome(*it) ? "Palindrome" : "Not Palindrome" )<< endl;
-    
 }
