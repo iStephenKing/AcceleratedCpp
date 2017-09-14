@@ -36,7 +36,7 @@ int main()
         cout << *it << endl;
      */
     
-    /*
+    
     // Analyze grades
     
     vector<Student_info> did, didnt;
@@ -63,13 +63,13 @@ int main()
     }
     
     // Anaylize different methods of calculating grades
-    write_analysis(cout, "median", median_analysis, did, didnt);
-    write_analysis(cout, "mean", mean_analysis, did, didnt);
-    write_analysis(cout, "median of homework completed", optimistic_analysis, did, didnt);
-    */
+    write_analysis(cout, "median", grade_aux, did, didnt);
+    write_analysis(cout, "mean", mean_grade, did, didnt);
+    write_analysis(cout, "median of homework completed", optimistic_grade, did, didnt);
+    
     
     // Classify Students
-    
+    /*
     // Read in list of Students
     Student_infos students;
     Student_info record;
@@ -116,4 +116,5 @@ int main()
     
     
     return 0;
+     */
 }

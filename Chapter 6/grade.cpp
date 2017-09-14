@@ -95,7 +95,7 @@ Student_infos extract_fails(Student_infos& students)
     return fail;
 }
  */
-
+/*  Two pass solution
 Student_infos extract_fails(Student_infos& students)
 {
     Student_infos fail;
@@ -103,42 +103,33 @@ Student_infos extract_fails(Student_infos& students)
     students.erase(remove_if(students.begin(), students.end(), fgrade), students.end());
     return fail;
 }
+ */
 
-// Average grade of students found using median of homework
-double median_analysis(const std::vector<Student_info>& students)
+// Single pass solution
+Student_infos extract_fails(Student_infos& students)
 {
-    vector<double> grades;
-    
-    transform(students.begin(), students.end(), back_inserter(grades), grade_aux);
-    
-    return median(grades);
+    Student_infos::iterator iter = stable_partition(students.begin(), students.end(), pgrade);
+    Student_infos fails(iter, students.end());
+    students.erase(iter, students.end());
+
+    return fails;
 }
 
-// Average grade of students found using mean of homework
-double mean_analysis(const std::vector<Student_info>& students)
+double analysis(const std::vector<Student_info>& students,
+                double grader(const Student_info&))
 {
     vector<double> grades;
-    
-    transform(students.begin(), students.end(), back_inserter(grades), mean_grade);
-    
-    return median(grades);
-}
-
-// Average grade of students found using median of homework submitted
-double optimistic_analysis(const std::vector<Student_info>& students)
-{
-    vector<double> grades;
-    transform(students.begin(), students.end(), back_inserter(grades), optimistic_grade);
+    transform(students.begin(), students.end(), back_inserter(grades), grader);
     
     return median(grades);
 }
 
 // General funcion to write out analysis of various methods
 void write_analysis(std::ostream& out, const std::string& name,
-                             double analysis(const vector<Student_info>&),
+                             double grader(const Student_info&),
                              const std::vector<Student_info>& did,
                              const std::vector<Student_info>& didnt)
 {
-    out << name << ": median(did) = " << analysis(did)
-        << ", median(didnt) = " << analysis (didnt) << std::endl;
+    out << name << ": median(did) = " << analysis(did, grader)
+        << ", median(didnt) = " << analysis (didnt, grader) << std::endl;
 }
