@@ -18,7 +18,7 @@ int main()
     vector<int> v;
     
     // This doesn't work. vector v is uninitialized.
-    copy(u.begin(), u.end(), v.begin());
+    copy(u.begin(), u.end(), back_inserter(v));
     
     for (vector<int>::iterator i = v.begin(); i != v.end(); ++i)
     {
