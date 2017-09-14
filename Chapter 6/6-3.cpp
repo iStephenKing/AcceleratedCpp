@@ -15,10 +15,10 @@ int main()
 {
     
     vector<int> u(10,100);
-    vector<int> v;
+    vector<int> v(u.size());
     
     // This doesn't work. vector v is uninitialized.
-    copy(u.begin(), u.end(), back_inserter(v));
+    copy(u.begin(), u.end(), v.begin());
     
     for (vector<int>::iterator i = v.begin(); i != v.end(); ++i)
     {
