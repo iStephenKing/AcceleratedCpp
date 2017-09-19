@@ -83,19 +83,19 @@ int main()
         students.push_back(record);
     }
     Student_infos::size_type numStudents = students.size();
-    Student_infos students_copy(students);
+    vector<Student_info> students_copy(students);
     cout << endl;
     
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
     // Compute Students Grade
     Student_infos slackers;
     try {
-        slackers = extract_slackers(students);
+        slackers = classify_students(students, did_all_hw);
     } catch (domain_error e) {
         cout << e.what();
     }
-    high_resolution_clock::time_point t2 = high_resolution_clock::now();
-    cout << "--Passed--" << endl;
+        cout << "--Did Homework--" << endl;
+    
     if (students.size())
         for (Student_infos::const_iterator iter = students.begin(); iter != students.end(); ++iter)
             cout << iter->name << endl;
@@ -109,18 +109,18 @@ int main()
     else
         cout << "None" << endl;
     
-    /*
+    
     // Compute Students Grade
     Student_infos failed_students;
     try {
-        failed_students = extract_fails(students);
+        failed_students = classify_students(students_copy, pgrade);
     } catch (domain_error e) {
         cout << e.what();
     }
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     cout << "--Passed--" << endl;
     if (students.size())
-        for (Student_infos::const_iterator iter = students.begin(); iter != students.end(); ++iter)
+        for (Student_infos::const_iterator iter = students_copy.begin(); iter != students_copy.end(); ++iter)
             cout << iter->name << endl;
     else
         cout << "None" << endl;
@@ -135,11 +135,13 @@ int main()
     
     auto duration = duration_cast<microseconds>( t2 - t1 ).count();
     cout << endl << numStudents << " Students" << endl
-         << students.size() << " Passed" << endl
+         << students_copy.size() << " Passed" << endl
          << failed_students.size() << " Failed" << endl
+         << students.size() << " Did all the homework" << endl
+         << slackers.size() << " Are slackers" << endl
          << "Computation time: " << duration << "us" << endl;
      
-    */
+    
     
     return 0;
     

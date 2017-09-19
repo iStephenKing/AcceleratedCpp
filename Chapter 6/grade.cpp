@@ -112,24 +112,15 @@ Student_infos extract_fails(Student_infos& students)
 }
  */
 
-// Single pass solution
-Student_infos extract_fails(Student_infos& students)
-{
-    Student_infos::iterator iter = stable_partition(students.begin(), students.end(), pgrade);
-    Student_infos fails(iter, students.end());
-    students.erase(iter, students.end());
 
-    return fails;
-}
-
-// Extracts and returns students who did not complete the homework
-Student_infos extract_slackers(Student_infos& students)
+Student_infos classify_students(Student_infos& students,
+                                bool classifier(const Student_info&))
 {
-    Student_infos::iterator iter = stable_partition(students.begin(), students.end(), did_all_hw);
-    Student_infos slackers(iter, students.end());
+    Student_infos::iterator iter = stable_partition(students.begin(), students.end(), classifier);
+    Student_infos failed(iter, students.end());
     students.erase(iter, students.end());
     
-    return slackers;
+    return failed;
 }
 
 double analysis(const std::vector<Student_info>& students,
