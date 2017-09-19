@@ -13,16 +13,10 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
-#include <functional>
+#include <numeric>
 
 using namespace std;
 
-string bigString;
-// I give up, making this crap global for now, maybe someting involving lambda? worth doubling back
-void cat(string s)
-{
-    bigString += s;
-}
 
 int main()
 {
@@ -33,7 +27,7 @@ int main()
         daStrings.push_back(s);
     
     // Now concatenate them
-    for_each(daStrings.begin(), daStrings.end(), cat);
+    string bigString = accumulate(daStrings.begin(), daStrings.end(), s);
     cout << bigString << endl;
 }
 
