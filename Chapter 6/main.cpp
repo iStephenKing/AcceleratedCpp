@@ -36,7 +36,7 @@ int main()
         cout << *it << endl;
      */
     
-    
+    /*
     // Analyze grades
     
     vector<Student_info> did, didnt;
@@ -66,10 +66,10 @@ int main()
     write_analysis(cout, "median", grade_aux, did, didnt);
     write_analysis(cout, "mean", mean_grade, did, didnt);
     write_analysis(cout, "median of homework completed", optimistic_grade, did, didnt);
-    
+    */
     
     // Classify Students
-    /*
+    
     // Read in list of Students
     Student_infos students;
     Student_info record;
@@ -83,9 +83,33 @@ int main()
         students.push_back(record);
     }
     Student_infos::size_type numStudents = students.size();
+    Student_infos students_copy(students);
     cout << endl;
     
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
+    // Compute Students Grade
+    Student_infos slackers;
+    try {
+        slackers = extract_slackers(students);
+    } catch (domain_error e) {
+        cout << e.what();
+    }
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    cout << "--Passed--" << endl;
+    if (students.size())
+        for (Student_infos::const_iterator iter = students.begin(); iter != students.end(); ++iter)
+            cout << iter->name << endl;
+    else
+        cout << "None" << endl;
+    cout << endl;
+    cout << "--Slackers--" << endl;
+    if (slackers.size())
+        for (Student_infos::const_iterator iter = slackers.begin(); iter != slackers.end(); ++iter)
+            cout << iter->name << endl;
+    else
+        cout << "None" << endl;
+    
+    /*
     // Compute Students Grade
     Student_infos failed_students;
     try {
@@ -107,14 +131,16 @@ int main()
             cout << iter->name << endl;
     else
         cout << "None" << endl;
+     
     
     auto duration = duration_cast<microseconds>( t2 - t1 ).count();
     cout << endl << numStudents << " Students" << endl
          << students.size() << " Passed" << endl
          << failed_students.size() << " Failed" << endl
          << "Computation time: " << duration << "us" << endl;
-    
+     
+    */
     
     return 0;
-     */
+    
 }

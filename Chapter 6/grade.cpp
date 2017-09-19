@@ -70,6 +70,13 @@ bool pgrade(const Student_info& s)
 {
     return !fgrade(s);
 }
+
+bool did_all_hw(const Student_info& s)
+{
+    return ((find(s.homework.begin(), s.homework.end(), 0))
+            == s.homework.end());
+}
+
 /*
 // Seperate failed students from vector and return vector of failed students -- BaseLine
 Student_infos extract_fails(Student_infos& students)
@@ -113,6 +120,16 @@ Student_infos extract_fails(Student_infos& students)
     students.erase(iter, students.end());
 
     return fails;
+}
+
+// Extracts and returns students who did not complete the homework
+Student_infos extract_slackers(Student_infos& students)
+{
+    Student_infos::iterator iter = stable_partition(students.begin(), students.end(), did_all_hw);
+    Student_infos slackers(iter, students.end());
+    students.erase(iter, students.end());
+    
+    return slackers;
 }
 
 double analysis(const std::vector<Student_info>& students,

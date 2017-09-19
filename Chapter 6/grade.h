@@ -15,7 +15,9 @@ double mean_grade(const Student_info& s);
 double optimistic_grade(const Student_info& s);
 bool fgrade(const Student_info& s);
 bool pgrade(const Student_info& s);
+bool did_all_hw(const Student_info& s);
 Student_infos extract_fails(Student_infos& students);
+Student_infos extract_slackers(Student_infos& students);
 void write_analysis(std::ostream& out, const std::string& name,
                     double grader(const Student_info&),
                     const std::vector<Student_info>& did,
