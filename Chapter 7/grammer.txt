@@ -1,13 +1,15 @@
-<noun>	cat
-<noun>	dog
-<noun>	table
+<noun>		cat
+<noun>		dog
+<noun>		table
 <noun-phrase>	<noun>
-<noun-phrase>	<adjective><noun-phrase>
+<noun-phrase>	<adjective> <noun-phrase>
 <adjective>	large
 <adjective>	brown
 <adjective>	absurd
-<adjective>	jumps
-<adjective>	sits
+<verb>		eats
+<verb>		jumps
+<verb>		sits
+<verb>		runs
 <location>	on the stairs
 <location>	under the sky
 <location>	wherever it wants
