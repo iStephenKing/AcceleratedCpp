@@ -37,7 +37,7 @@ int main()
          it != ret.end(); ++it) {
     
         // Write the word
-        cout << setw(width) << it->first << ": "; // << " occurs on line(s): ";
+        cout << setw(width) << it->first << " occurs on " << ((it->second.size() > 1) ? "lines:" : "line :");
     
         // Write the first line numbers
         vector<int>::const_iterator line_it = it->second.begin();
@@ -48,8 +48,8 @@ int main()
         int n = 0;
         while (line_it != it->second.end()) {
             if  (n++ == 25 )
-            {
-                cout << endl << setw(width) << "" << "  ";
+            {                                     // " occurs on lines:"
+                cout << endl << setw(width) << "" << "                 ";
                 cout << *line_it++;
                 n = 0;
             } else
