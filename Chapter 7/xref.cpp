@@ -29,7 +29,7 @@ std::map<std::string, std::vector<int> >
         // Remember that each word has occured on the current line
         string word;
         for (vector<string>::const_iterator it = words.begin(); it != words.end(); ++it) {
-            word = condition(*it);
+            word = *it;//condition(*it);
             if (ret[word].empty() || ret[word].back() != line_number)
                 ret[word].push_back(line_number);
         }
