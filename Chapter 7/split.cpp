@@ -43,3 +43,14 @@ std::vector<std::string> split(const string& str)
     }
     return ret;
 }
+
+// Change string to lowercase characters and remove punctuation
+std::string condition(const std::string& str)
+{
+    string ret;
+    for (string::const_iterator i = str.begin(); i != str.end(); ++i)
+        if (isalpha(*i))
+            ret.push_back(tolower(*i));
+    
+    return ret;
+}

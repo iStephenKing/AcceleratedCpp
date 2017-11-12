@@ -41,7 +41,6 @@ istream& read(istream& in, Student_info&s)
 {
     // Read Students name, midterm and final grades
     in >> s.name >> s.midterm >> s.final;
-    std::cout << endl << "Name = " << s.name;
     
     // Read Students homework grades
     read_hw(in, s.homework);

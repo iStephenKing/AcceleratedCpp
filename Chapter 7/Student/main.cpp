@@ -14,14 +14,13 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <map>
+#include <fstream>
 
 #include "grade.h"
 #include "Student_info.h"
 
-using std::cin;     using std::setprecision;
-using std::cout;    using std::string;
-using std::endl;    using std::streamsize;
-using std::vector;  using std::domain_error;
+using namespace std;
 
 int main()
 {
@@ -30,31 +29,33 @@ int main()
     string::size_type maxlen = 0;
     
     // Read and store all records, find length of longest name
-    cout << "Enter Student Names and Grades" << endl;
-    while (read(cin, record)) {
-        maxlen = std::max(maxlen, record.name.size());
-        students.push_back(record);
+    cout << "Reading Student Names and Grades" << endl;
+    ifstream studentGrades;
+    studentGrades.open("students.txt");
+    if (studentGrades.is_open()) {
+        while (read(studentGrades, record)) {
+            maxlen = std::max(maxlen, record.name.size());
+            students.push_back(record);
+        }
+        studentGrades.close();
     }
     
     cout << endl;
-    // Alphabatize Student list
-    sort(students.begin(), students.end(), less_than);
-    
+    map<const char, int> student_grades;
+    // Calculate student Grades and Categorize
     for (vector<Student_info>::size_type i = 0; i != students.size(); ++i) {
         
-        // Write student name and padding
-        cout << students[i].name << string(maxlen + 1 - students[i].name.size(), ' ');
-        
-        // Compute Students Grade
         try {
-            double final_grade = grade(students[i]);
-            streamsize prec = cout.precision();
-            cout << setprecision(3) << final_grade << setprecision(prec);
+            student_grades[letterGrade(students[i])]++; // Calculate letter grade, pass to map and increment int stored there
+            
         } catch (domain_error e) {
             cout << e.what();
         }
-        cout << endl;
     }
+    
+    cout << "The student grade breakdown is: " << endl;
+    for (map<const char, int>::const_iterator it = student_grades.begin(); it != student_grades.end(); ++it)
+        cout << it->first << ": " << it->second << endl;
     
     return 0;
     

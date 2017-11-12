@@ -17,5 +17,8 @@ std::map<std::string, std::vector<int> >
     xref(std::istream& in,
          std::vector<std::string>find_words(const std::string&) = split);
 
+bool compare_wordcount(std::pair<std::string, int> left, std::pair<std::string, int> right);
+std::string::size_type max_key_length(std::map<std::string, std::vector<int> > m);
+
 
 #endif

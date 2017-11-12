@@ -34,3 +34,13 @@ double grade(const Student_info& s)
 {
     return grade(s.midterm, s.final, s.homework);
 }
+
+char letterGrade(const Student_info& s)
+{
+    double sgrade = grade(s);
+    
+    return sgrade >= 90 ? 'A' :
+           sgrade >= 80 ? 'B' :
+           sgrade >= 70 ? 'C' :
+           sgrade >= 60 ? 'D' : 'F';
+}

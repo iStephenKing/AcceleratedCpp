@@ -15,6 +15,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include <map>
 #include <random>
 #include <iostream>
@@ -27,13 +28,13 @@ typedef std::map<std::string, Rule_collection> Grammer;
 Grammer read_grammer(std::istream& in);
 
 // Use Grammer to generate a sentence
-std::vector<std::string> gen_sentence(const Grammer& g);
+std::list<std::string> gen_sentence(const Grammer& g);
 
 // Determine if a given string represents a category
 bool bracketed(const std::string& s);
 
 // Aux Function to generate output based on grammer rules
-void gen_aux(const Grammer& g, const std::string& word, std::vector<std::string>& ret);
+void gen_aux(const Grammer& g, const std::string& word, std::list<std::string>& ret);
 
 // return a random iteger in the range [0,n)
 int nrand(int n);
