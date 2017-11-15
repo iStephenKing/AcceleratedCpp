@@ -36,3 +36,27 @@ ForwardIterator1 search(ForwardIterator1 b, ForwardIterator1 e, ForwardIterator2
     }
     return e;
 }
+
+template <class T>
+void c_swap(T& a, T& b)
+{
+    T t = a;
+    a = b;
+    b = t;
+}
+
+template <class Bi>
+void c_reverse(Bi begin, Bi end)
+{
+    while (begin != end) {
+        --end;
+        if (begin != end)
+    
+            c_swap(*begin++, *end);
+        
+    }
+}
+
+
+
+#endif
