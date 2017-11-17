@@ -38,9 +38,12 @@ int main()
         cout << students[i].name()
              << string(maxlen + 1 - students[i].name().size(), ' ');
         try {
-            double final_grade = students[i].grade();
-            cout << setprecision(3) << final_grade
-            << setprecision(prec) << endl;
+            if (students[i].valid()) {
+                double final_grade = students[i].grade();
+                cout << setprecision(3) << final_grade
+                << setprecision(prec) << endl;
+            } else
+                cout << " is a slacker" << endl;
         } catch (domain_error e) {
             cout << e.what() << endl;
         }
