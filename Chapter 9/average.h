@@ -47,14 +47,8 @@ T optimistic_median(const std::vector<T>& vec)
     typedef typename std::vector<T>::size_type vec_size;
     vec_size size = nonzero.size();
     if (size)
-    {
-        /*
-         sort(nonzero.begin(), nonzero.end());
-         vector<double>::size_type mid = size/2;
-         return size%2 == 0 ? (vec[mid] + vec[mid-1]) / 2 : vec[mid];
-         */
         return median(nonzero);
-    }else
+    else
         return 0;
 }
 
