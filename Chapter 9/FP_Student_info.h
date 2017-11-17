@@ -18,7 +18,7 @@ public:
     FP_Student_info();
     FP_Student_info(std::istream& in);
     std::istream& read(std::istream&);
-    char grade() const;
+    char lettergrade() const;
     std::string name() const{ return n;}
 
     bool fgrade() const{ return grade() < 60; }
@@ -27,6 +27,7 @@ public:
 private:
     std::string n;
     double midterm, final;
+    double grade() const;
 };
 
 bool compare(const FP_Student_info& x, const FP_Student_info& y);

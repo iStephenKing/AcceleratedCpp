@@ -33,8 +33,13 @@ istream& FP_Student_info::read(istream& in)
     return in;
 }
 
-char FP_Student_info::grade() const
+double FP_Student_info::grade() const
 {
-    return (0.33 * midterm + 0.67 * final) > 60 ? 'P' : 'F';
+    return 0.33 * midterm + 0.67 * final;
+}
+
+double FP_Student_info::lettergrade() const
+{
+    return pgrade() ? 'P' : 'F';
 }
 
