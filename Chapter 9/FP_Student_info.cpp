@@ -38,7 +38,7 @@ double FP_Student_info::grade() const
     return 0.33 * midterm + 0.67 * final;
 }
 
-double FP_Student_info::lettergrade() const
+char FP_Student_info::lettergrade() const
 {
     return pgrade() ? 'P' : 'F';
 }
