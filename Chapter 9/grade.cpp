@@ -25,16 +25,16 @@ double grade(double midterm, double final, double homework)
 
 // Computes a students grades from midterm, final, and homework grades
 // Passes a pointer (reference) to homework vector
-/*
-double grade(double midterm, double final, const vector<double>& hw,double average(const std::vector<double>&))
+
+double grade(double midterm, double final, const vector<double>& hw,double average(std::vector<double>))
 {
     return grade(midterm, final, hw.size() == 0 ? 0 : average(hw));
 }
- */
 
+/*
 double grade(double midterm, double final, const vector<double>& hw)
 {
     return grade(midterm, final, hw.size() == 0 ? 0 : median(hw));
 }
-
+*/
 

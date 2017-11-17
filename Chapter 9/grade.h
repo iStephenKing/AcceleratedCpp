@@ -8,8 +8,8 @@
 
 typedef std::vector<Student_info> Student_infos;
 
-//double grade(double midterm, double final, const std::vector<double>& hw, double average(const std::vector<double>&) = median);
-double grade(double midterm, double final, const std::vector<double>& hw);
+double grade(double midterm, double final, const std::vector<double>& hw, double average(std::vector<double>) = median);
+//double grade(double midterm, double final, const std::vector<double>& hw);
 double grade(double midterm, double final, double homework);
 
 
