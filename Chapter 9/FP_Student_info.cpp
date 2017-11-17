@@ -43,3 +43,8 @@ char FP_Student_info::lettergrade() const
     return pgrade() ? 'P' : 'F';
 }
 
+bool passed(const FP_Student_info& s)
+{
+    return s.pgrade();
+}
+

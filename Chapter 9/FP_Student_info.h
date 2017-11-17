@@ -31,6 +31,7 @@ private:
 };
 
 bool compare(const FP_Student_info& x, const FP_Student_info& y);
+bool passed(const FP_Student_info& s);
 
 
 
