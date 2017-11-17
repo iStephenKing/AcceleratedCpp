@@ -29,7 +29,7 @@ T median(std::vector<T> v)
     
     vec_sz mid = size / 2;
     
-    return size % 2 ? (v[mid] + v[mid -1]) / 2 : v[mid];
+    return size % 2 ? v[mid] : (v[mid] + v[mid -1]) / 2 ;
 }
 
 template<class T>

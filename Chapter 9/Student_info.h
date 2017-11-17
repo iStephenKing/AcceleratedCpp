@@ -25,6 +25,7 @@ public:
     bool pgrade() const { return !fgrade(); }
     
 private:
+    double g;
     std::string n;
     double midterm, final;
     std::vector<double> homework;
