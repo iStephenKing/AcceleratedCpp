@@ -32,14 +32,13 @@ istream& Student_info::read(istream& in)
     in >> n >> midterm >> final;
     
     read_hw(in, homework);
-    g = ::grade(midterm, final, homework);
-    
+
     return in;
 }
 
 double Student_info::grade() const
 {
-    return g;
+    return ::grade(midterm, final, homework);
 }
 
 // Read homework grades into hw vector

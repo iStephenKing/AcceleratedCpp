@@ -27,7 +27,7 @@ int main()
     
     while (record.read(cin)) {
         maxlen = max(maxlen, record.name().size());
-        students.push_back(record);   // Is this using a copy constructor? Must be that default exists
+        students.push_back(record);
     }
     
     sort(students.begin(), students.end(), compare);
