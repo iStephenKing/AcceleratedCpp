@@ -41,6 +41,24 @@ double Student_info::grade() const
     return ::grade(midterm, final, homework);
 }
 
+std::string Student_info::letter_grade() const
+{
+    // range for letter grades and letter grades
+    static const int grade_numbers[]   = { 97 , 94, 90 , 87 , 84, 80 , 77 , 74, 70 , 67 , 64, 60 , 0};
+    static const char* const letters[] = {"A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F"};
+    
+    static const size_t ngrades = sizeof(grade_numbers) / sizeof(*grade_numbers);
+    
+    double student_grade = grade();
+    
+    for (size_t i = 0; i < ngrades; ++i) {
+        if (student_grade >= grade_numbers[i])
+            return letters[i];
+    }
+    
+    return "\?\?\?";
+}
+
 // Read homework grades into hw vector
 istream& Student_info::read_hw(istream& in, vector<double>& hw)
 {
