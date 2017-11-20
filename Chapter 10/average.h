@@ -15,7 +15,7 @@
 #include <vector>
 #include <numeric>
 #include <stdexcept>
-
+/*
 template<class T>
 T median(std::vector<T> v)
 {
@@ -31,6 +31,32 @@ T median(std::vector<T> v)
     
     return size % 2 ? v[mid] : (v[mid] + v[mid -1]) / 2 ;
 }
+*/
+
+template<class T, class RandomAccessIterator>
+T median(RandomAccessIterator first, RandomAccessIterator second)
+{
+    
+ 
+    if (first == second)
+        throw std::domain_error("median of an empty vector");
+    
+    std::vector<T> v;
+    copy(first, second, back_inserter(v));
+    
+    typedef typename std::vector<T>::size_type vec_sz;
+    
+    vec_sz size = v.size();
+    
+    sort(v.begin(), v.end());
+    
+    vec_sz mid = size / 2;
+    T ret = size % 2 ? v[mid] : (v[mid] + v[mid -1]) / 2 ;
+    
+    return ret;
+}
+
+
 
 template<class T>
 T mean(std::vector<T> v)
