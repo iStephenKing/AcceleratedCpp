@@ -51,3 +51,9 @@ Str operator+(const Str& lhs, const Str& rhs)
     return ret;
 }
 
+Str& Str::operator+=(const Str& rhs)
+{
+    std::copy(rhs.data.begin(), rhs.data.end(), std::back_inserter(data));
+    return *this;
+}
+
