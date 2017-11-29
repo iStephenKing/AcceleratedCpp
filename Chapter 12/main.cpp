@@ -18,7 +18,7 @@ int main()
 {
     Str s1 = "Hello World!";
     cout << s1 << endl;
-    
+    cout << s1 << endl;
     cin >> s1;
     cout << s1 << endl;
     
