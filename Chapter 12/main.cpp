@@ -25,6 +25,10 @@ int main()
     
     Str s5;
     
+    for (Str::const_iterator it = s1.begin(); it != s1.end(); ++it)
+        cout << *it;
+    cout << endl;
+    
     // These statements should pass
     assert(s1 == s1);
     
@@ -47,6 +51,10 @@ int main()
     Str s4 = "Positive Cases Passed";
     
     cout <<  s4 << endl;
+    
+    Str s;
+    getline(cin, s);
+    cout << s<< endl;
     
     //assert(s1 == s2);
     
