@@ -21,6 +21,7 @@
 class Str {
     
     friend std::istream& operator>>(std::istream&, Str&);
+    friend std::istream& getline(std::istream&, Str&);
     
 public:
     typedef char* iterator;
@@ -53,28 +54,25 @@ public:
     size_type size() const { return length; }
     bool empty() const { return length == 0; }
     
-    char& operator[](size_type i) { return data[i]; }
-    const char& operator[](size_type i) const { return data[i]; }
+    operator bool() const { return ! empty(); }
+    char& operator[](size_type i) { return chars[i]; }
+    const char& operator[](size_type i) const { return chars[i]; }
     
     Str& operator=(const Str&);
     Str& operator+=(const Str&);
+    
+    const char* c_str() const { return chars; }
 
-    /*
-    void push_back(const char val) {
-        if (avail == limit)
-            grow();
-        unchecked_append(val);
-    }
-     */
+    const char* data() const { return chars; }
     
-    iterator begin() { return data; }
-    const_iterator begin() const { return data; }
+    iterator begin() { return chars; }
+    const_iterator begin() const { return chars; }
     
-    iterator end() { return data + length; }
-    const_iterator end() const { return data + length; }
+    iterator end() { return chars + length; }
+    const_iterator end() const { return chars + length; }
     
 private:
-    iterator data;  // First Character
+    iterator chars;  // First Character
     size_type length; // One past last character in array
     
     // Facilitates memory allocation
@@ -88,16 +86,17 @@ private:
     // Destroy elelements in array and free memory
     void uncreate();
     
-    // Support functions for push_back()
-    /*
-    void grow();
-    void unchecked_append(const char c);
-     */
 };
 
 
 std::ostream& operator<<(std::ostream&, const Str&);
 Str operator+(const Str&, const Str&);
+bool operator<(const Str&, const Str&);
+bool operator<=(const Str&, const Str&);
+bool operator>=(const Str&, const Str&);
+bool operator>(const Str&, const Str&);
+bool operator==(const Str&, const Str&);
+bool operator!=(const Str&, const Str&);
 
 
 
