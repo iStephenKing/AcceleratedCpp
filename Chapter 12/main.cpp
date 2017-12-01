@@ -23,6 +23,8 @@ int main()
     
     Str s3 = "AAA";
     
+    Str s5;
+    
     // These statements should pass
     assert(s1 == s1);
     
@@ -37,6 +39,10 @@ int main()
     assert(s1 >= s1);
     
     assert(s1 <= s1);
+    
+    assert(s1);
+    
+    assert(!s5);
     
     Str s4 = "Positive Cases Passed";
     
