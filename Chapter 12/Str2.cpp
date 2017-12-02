@@ -62,7 +62,8 @@ std::ostream& operator<<(std::ostream& os, const Str& s)
         os << s[i];
     }
      */
-    std::ostream_iterator(data, data + length);
+    std::ostream_iterator<char> out(os);
+    copy(s.begin(), s.end(), out);
     
     return os;
 }
