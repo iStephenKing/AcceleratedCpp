@@ -12,15 +12,15 @@
     11/12/2017
 */
 
-#include "Vec.h"
+#include <vector>
 #include <algorithm>
 #include <numeric>
 #include <stdexcept>
 
 template<class T>
-T median(Vec<T> v)
+T median(std::vector<T> v)
 {
-    typedef typename Vec<T>::size_type vec_sz;
+    typedef typename std::vector<T>::size_type vec_sz;
     
     vec_sz size = v.size();
     if (size == 0)
@@ -42,10 +42,10 @@ T median(RandomAccessIterator first, RandomAccessIterator second)
     if (first == second)
         throw std::domain_error("median of an empty vector");
     
-    Vec<T> v;
+    std::vector<T> v;
     copy(first, second, back_inserter(v));
     
-    typedef typename Vec<T>::size_type vec_sz;
+    typedef typename std::vector<T>::size_type vec_sz;
     
     vec_sz size = v.size();
     
@@ -60,18 +60,18 @@ T median(RandomAccessIterator first, RandomAccessIterator second)
 
 
 template<class T>
-T mean(Vec<T> v)
+T mean(std::vector<T> v)
 {
     return accumulate(v.begin(), v.end(), (T)0.0)/ v.size();
 }
 
 template<class T>
-T optimistic_median(const Vec<T>& vec)
+T optimistic_median(const std::vector<T>& vec)
 {
-    Vec<T> nonzero;
+    std::vector<T> nonzero;
     remove_copy(vec.begin(), vec.end(), back_inserter(nonzero), (T)0);
     
-    typedef typename Vec<T>::size_type vec_size;
+    typedef typename std::vector<T>::size_type vec_size;
     vec_size size = nonzero.size();
     if (size)
         return median(nonzero);

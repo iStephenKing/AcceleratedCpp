@@ -6,66 +6,20 @@
     8/12/17
  */
 
-#include "Student_info.h"
+#include "Student_info.hpp"
 #include "grade.h"
 #include <algorithm>
 #include <iterator>
 
 using namespace std;
 
-Student_info::Student_info(): midterm(0), final(0)
-{
-    cout << "create" << endl;
-}
-
-Student_info::Student_info(const Student_info& other)
-{
-    cout << "copy" << endl;
-    name = other.name;
-    midterm = other.midterm;
-    final = other.final;
-    homework = other.homework;
-}
-
-/*
-Student_info::Student_info(std::istream& in)
-{
-    cout << "create" << endl;
-    read (in);
-}
-*/
-
-Student_info& Student_info::operator=(const Student_info& other)
-{
-    cout << "assign" << endl;
-    if (this != &other)
-    {
-        name = other.name;
-        midterm = other.midterm;
-        final = other.final;
-        homework = other.homework;
-    }
-    return *this;
-}
-
-Student_info::~Student_info()
-{
-    cout << "destroy" << endl;
-}
-
-// Predicate used to sort Students
-bool compare(const Student_info& x, const Student_info& y)
-{
-    return x.name < y.name;
-}
 
 // Student info member function
 // read in name, grades
 istream& Student_info::read(istream& in)
 {
-    in >> name >> midterm >> final;
-    
-    read_hw(in, homework);
+    read_common(in);
+    read_hw(in);
 
     return in;
 }
@@ -93,18 +47,26 @@ std::string Student_info::letter_grade() const
     return "\?\?\?";
 }
 
+// read in name, grades
+istream& Student_info::read_common(istream& in)
+{
+    in >> n >> midterm >> final;
+    
+    return in;
+}
+
 // Read homework grades into hw vector
-istream& Student_info::read_hw(istream& in, Vec<double>& hw)
+istream& Student_info::read_hw(istream& in)
 {
     // use input stream to read grades into hw
     if (in) {
         // Empty Vector of any previous results
-        hw.clear();
+        homework.clear();
         
         // Read homework grades until EOF or invalid data
         double x;
         while (in >> std::dec >> x)
-            hw.push_back(x);
+            homework.push_back(x);
         
         // Clear Error state for next read attempt
         in.clear();
@@ -113,11 +75,25 @@ istream& Student_info::read_hw(istream& in, Vec<double>& hw)
     return in;
 }
 
-Vec<Student_info> classify_students(Vec<Student_info>& students,
+
+// Nom member functions
+
+// Predicate used to sort Students
+bool compare(const Student_info& x, const Student_info& y)
+{
+    return x.name() < y.name();
+}
+
+bool compare_grades(const Student_info& x, const Student_info& y)
+{
+    return x.grade() < y.grade();
+}
+
+vector<Student_info> classify_students(vector<Student_info>& students,
                                 bool classifier(const Student_info&))
 {
-    Vec<Student_info>::iterator iter = stable_partition(students.begin(), students.end(), classifier);
-    Vec<Student_info> failed(iter, students.end());
+    vector<Student_info>::iterator iter = stable_partition(students.begin(), students.end(), classifier);
+    vector<Student_info> failed(iter, students.end());
     students.erase(iter, students.end());
     
     return failed;

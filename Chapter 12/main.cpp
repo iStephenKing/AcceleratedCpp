@@ -12,6 +12,8 @@
 #include <iostream>
 #include <cassert>
 #include "Str2.hpp"
+#include "Vec.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -59,5 +61,11 @@ int main()
     //assert(s1 == s2);
     
     //cout << "Negative Case Passed" << endl;
+    
+    Vec<char> v(s4.begin(), s4.end());
+    ostream_iterator<char> out(cout, " ");
+    copy(v.begin(), v.end(), out);
+    cout << endl;
+    
     
 }
