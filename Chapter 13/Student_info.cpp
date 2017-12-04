@@ -55,6 +55,11 @@ istream& Student_info::read_common(istream& in)
     return in;
 }
 
+bool compare_ptrs(const Student_info* student1, const Student_info* student2)
+{
+    return compare(*student1, *student2);
+}
+
 // Read homework grades into hw vector
 istream& Student_info::read_hw(istream& in)
 {

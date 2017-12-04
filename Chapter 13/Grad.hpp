@@ -22,6 +22,10 @@ public:
     Grad(std::istream& is) { read(is); }
     double grade() const;
     std::istream& read(std::istream&);
+    
+protected:
+    Grad* clone() { return new Grad(*this); }
+    
 private:
     double thesis;
     

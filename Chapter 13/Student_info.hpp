@@ -1,9 +1,9 @@
-#ifndef GUARD_Student_info_h
-#define GUARD_Student_info_h
+#ifndef GUARD_Student_info_hpp
+#define GUARD_Student_info_hpp
 /*
     From Accellerated C++
 
-    Student_info.h
+    Student_info.hpp
     Stephen King
     11/13/17
 */
@@ -11,10 +11,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+//#include "Student_handle.hpp"
 
 
 class Student_info {
+    
     friend bool did_all_homework(const Student_info& s);
+    friend class Student_handle;
 public:
     
     Student_info(): midterm(0), final(0) { }
@@ -29,6 +32,8 @@ public:
 
     
 protected:
+    virtual Student_info* clone() { return new Student_info(*this); }
+    
     double midterm, final;
     std::vector<double> homework;
     std::istream& read_common(std::istream&);
