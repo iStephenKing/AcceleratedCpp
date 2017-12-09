@@ -18,10 +18,13 @@
 class Grad : public Student_info {
     
 public:
-    Grad(): thesis(0) { }
-    Grad(std::istream& is) { read(is); }
+    Grad(): thesis(0) { std::cerr << "Grad()" << std::endl;}
+    Grad(std::istream& is) { std::cerr << "Grad(std::isteam&)" << std::endl; read(is); }
     double grade() const;
+    void regrade(double d1, double d2) { final = d1; thesis = d2; }
     std::istream& read(std::istream&);
+    
+    bool valid() const{ return Student_info::valid() && thesis >= 0 && thesis <= 100; }  // Homework must be non empty and thesis must be initialized
     
 protected:
     Grad* clone() { return new Grad(*this); }

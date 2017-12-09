@@ -10,6 +10,7 @@
 #include "grade.h"
 #include <algorithm>
 #include <iterator>
+#include <sstream>
 
 using namespace std;
 
@@ -26,6 +27,7 @@ istream& Student_info::read(istream& in)
 
 double Student_info::grade() const
 {
+    cout << "Student_info grade()" << endl;
     return ::grade(midterm, final, homework);
 }
 
@@ -69,8 +71,11 @@ istream& Student_info::read_hw(istream& in)
         homework.clear();
         
         // Read homework grades until EOF or invalid data
+        string str;
+        getline(in, str);
+        stringstream input(str);
         double x;
-        while (in >> std::dec >> x)
+        while (input >> std::dec >> x) //Is there a way to make this fail on a newline?
             homework.push_back(x);
         
         // Clear Error state for next read attempt

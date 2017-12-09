@@ -20,15 +20,16 @@ class Student_info {
     friend class Student_handle;
 public:
     
-    Student_info(): midterm(0), final(0) { }
-    Student_info(std::istream& in) { read (in); }
+    Student_info(): midterm(0), final(0) { std::cerr << "Student_info()" << std::endl; }
+    Student_info(std::istream& in) { read (in); std::cerr << "Student_info(std::istream&)" << std::endl; }
     virtual ~Student_info() { }
     
     virtual std::istream& read(std::istream&);
     virtual double grade() const;
+    virtual void regrade(double d1, double d2 = 0) { final = d1; }
     std::string letter_grade() const;
-    std::string name() const{ return n;}
-    bool valid() const{ return !homework.empty(); }
+    std::string name() const{ std::cout << "Student_info name()" << std::endl; return n;}
+    virtual bool valid() const{ return !homework.empty(); }
 
     
 protected:

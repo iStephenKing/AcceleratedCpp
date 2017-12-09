@@ -35,12 +35,13 @@ std::istream& Student_handle::read(std::istream& in)
     
     char identifier;
     
-    in >> identifier;  // need while?  What happens if we reach EOF?
+    in >> identifier;
     
     if (identifier == 'U')
         student = new Student_info(in);
     else
         student = new Grad(in);
+    
     
     return in;
 }
