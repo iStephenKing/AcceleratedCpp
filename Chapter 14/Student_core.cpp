@@ -1,12 +1,12 @@
 /*
     From Acellerated C++
  
-    Student_info.cpp
+    Student_core.cpp
     Stephen King
     8/12/17
  */
 
-#include "Student_info.hpp"
+#include "Student_core.hpp"
 #include "grade.h"
 #include <algorithm>
 #include <iterator>
@@ -15,9 +15,9 @@
 using namespace std;
 
 
-// Student info member function
+// Student core member function
 // read in name, grades
-istream& Student_info::read(istream& in)
+istream& Student_core::read(istream& in)
 {
     read_common(in);
     read_hw(in);
@@ -25,13 +25,12 @@ istream& Student_info::read(istream& in)
     return in;
 }
 
-double Student_info::grade() const
+double Student_core::grade() const
 {
-    cout << "Student_info grade()" << endl;
     return ::grade(midterm, final, homework);
 }
 
-std::string Student_info::letter_grade() const
+std::string Student_core::letter_grade() const
 {
     // range for letter grades and letter grades
     static const int grade_numbers[]   = { 97 , 94, 90 , 87 , 84, 80 , 77 , 74, 70 , 67 , 64, 60 , 0};
@@ -50,20 +49,15 @@ std::string Student_info::letter_grade() const
 }
 
 // read in name, grades
-istream& Student_info::read_common(istream& in)
+istream& Student_core::read_common(istream& in)
 {
     in >> n >> midterm >> final;
     
     return in;
 }
 
-bool compare_ptrs(const Student_info* student1, const Student_info* student2)
-{
-    return compare(*student1, *student2);
-}
-
 // Read homework grades into hw vector
-istream& Student_info::read_hw(istream& in)
+istream& Student_core::read_hw(istream& in)
 {
     // use input stream to read grades into hw
     if (in) {
@@ -89,35 +83,40 @@ istream& Student_info::read_hw(istream& in)
 // Nom member functions
 
 // Predicate used to sort Students
-bool compare(const Student_info& x, const Student_info& y)
+bool compare(const Student_core& x, const Student_core& y)
 {
     return x.name() < y.name();
 }
 
-bool compare_grades(const Student_info& x, const Student_info& y)
+bool compare_ptrs(const Student_core* student1, const Student_core* student2)
+{
+    return compare(*student1, *student2);
+}
+
+bool compare_grades(const Student_core& x, const Student_core& y)
 {
     return x.grade() < y.grade();
 }
 
-vector<Student_info> classify_students(vector<Student_info>& students,
-                                bool classifier(const Student_info&))
+vector<Student_core> classify_students(vector<Student_core>& students,
+                                bool classifier(const Student_core&))
 {
-    vector<Student_info>::iterator iter = stable_partition(students.begin(), students.end(), classifier);
-    vector<Student_info> failed(iter, students.end());
+    vector<Student_core>::iterator iter = stable_partition(students.begin(), students.end(), classifier);
+    vector<Student_core> failed(iter, students.end());
     students.erase(iter, students.end());
     
     return failed;
 }
 
-bool did_all_homework(const Student_info& s)
+bool did_all_homework(const Student_core& s)
 {
     return ((std::find(s.homework.begin(), s.homework.end(), 0)) == s.homework.end());
 }
-bool fgrade(const Student_info& s)
+bool fgrade(const Student_core& s)
 {
     return s.grade() < 60;
 }
-bool pgrade(const Student_info& s)
+bool pgrade(const Student_core& s)
 {
     return !fgrade(s);
 }

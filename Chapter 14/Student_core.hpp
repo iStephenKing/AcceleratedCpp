@@ -1,9 +1,9 @@
-#ifndef GUARD_Student_info_hpp
-#define GUARD_Student_info_hpp
+#ifndef GUARD_Student_core_hpp
+#define GUARD_Student_core_hpp
 /*
     From Accellerated C++
 
-    Student_info.hpp
+    Student_core.hpp
     Stephen King
     11/13/17
 */
@@ -11,29 +11,31 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include "Student_handle.hpp"
+#include "Handle.hpp"
 
 
-class Student_info {
+
+class Student_core {
     
-    friend bool did_all_homework(const Student_info& s);
-    friend class Student_handle;
+    friend bool did_all_homework(const Student_core& s);
+    //friend class Student_info;
+    friend class Handle<Student_core>;
 public:
     
-    Student_info(): midterm(0), final(0) { std::cerr << "Student_info()" << std::endl; }
-    Student_info(std::istream& in) { read (in); std::cerr << "Student_info(std::istream&)" << std::endl; }
-    virtual ~Student_info() { }
+    Student_core(): midterm(0), final(0) { }
+    Student_core(std::istream& in) { read (in); }
+    virtual ~Student_core() { }
     
     virtual std::istream& read(std::istream&);
     virtual double grade() const;
     virtual void regrade(double d1, double d2 = 0) { final = d1; }
     std::string letter_grade() const;
-    std::string name() const{ std::cout << "Student_info name()" << std::endl; return n;}
+    std::string name() const{ return n; }
     virtual bool valid() const{ return !homework.empty(); }
 
     
 protected:
-    virtual Student_info* clone() { return new Student_info(*this); }
+    virtual Student_core* clone() { return new Student_core(*this); }
     
     double midterm, final;
     std::vector<double> homework;
@@ -45,14 +47,14 @@ private:
 
 };
 
-bool compare(const Student_info& x, const Student_info& y);
-bool compare_ptrs(const Student_info* student1, const Student_info* student2);
-bool compare_grades(const Student_info&, const Student_info&);
-std::vector<Student_info> classify_students(std::vector<Student_info>& students,
-                                    bool classifier(const Student_info&));
+bool compare(const Student_core& x, const Student_core& y);
+bool compare_ptrs(const Student_core* student1, const Student_core* student2);
+bool compare_grades(const Student_core&, const Student_core&);
+std::vector<Student_core> classify_students(std::vector<Student_core>& students,
+                                    bool classifier(const Student_core&));
 
-bool fgrade(const Student_info& s);
-bool pgrade(const Student_info& s);
+bool fgrade(const Student_core& s);
+bool pgrade(const Student_core& s);
 
 
 

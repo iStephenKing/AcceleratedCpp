@@ -12,7 +12,7 @@
 
 #include "grade.h"
 #include "average.h"
-#include "Student_info.hpp"
+#include "Student_core.hpp"
 
 
 using std::domain_error;

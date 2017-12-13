@@ -17,8 +17,7 @@
 
 double Grad::grade() const
 {
-    std::cout << "Grad grade()" << std::endl;
-    return std::min(Student_info::grade(), thesis);
+    return std::min(Student_core::grade(), thesis);
     
 }
 

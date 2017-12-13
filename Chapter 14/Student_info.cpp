@@ -1,22 +1,22 @@
 //
-//  Student_handle.cpp
+//  Student_info.cpp
 //  
 //
 //  Created by Stephen King on 12/3/17.
 //
 //
 
-#include "Student_handle.hpp"
 #include "Student_info.hpp"
+#include "Student_core.hpp"
 #include "Grad.hpp"
 
 // Costructors and Copy Control
-Student_handle::Student_handle(const Student_handle& s)
+Student_info::Student_info(const Student_info& s)
 {
     if(s.student) student = s.student->clone();
 }
 
-Student_handle& Student_handle::operator=(const Student_handle& s)
+Student_info& Student_info::operator=(const Student_info& s)
 {
     if (&s != this)
     {
@@ -29,7 +29,7 @@ Student_handle& Student_handle::operator=(const Student_handle& s)
 }
 
 // Operations
-std::istream& Student_handle::read(std::istream& in)
+std::istream& Student_info::read(std::istream& in)
 {
     delete student;
     
@@ -38,7 +38,7 @@ std::istream& Student_handle::read(std::istream& in)
     in >> identifier;
     
     if (identifier == 'U')
-        student = new Student_info(in);
+        student = new Student_core(in);
     else
         student = new Grad(in);
     

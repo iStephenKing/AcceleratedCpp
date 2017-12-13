@@ -1,7 +1,7 @@
-#ifndef Student_handle_hpp
-#define Student_handle_hpp
+#ifndef Student_info_hpp
+#define Student_info_hpp
 //
-//  Student_handle.hpp
+//  Student_info.hpp
 //  
 //
 //  Created by Stephen King on 12/3/17.
@@ -10,18 +10,18 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "Student_info.hpp"
+#include "Student_core.hpp"
 //#include "Grad.cpp"
 
-class Student_handle {
+class Student_info {
     
 public:
     // Constructors and copy control
-    Student_handle(): student(0) { }
-    Student_handle(std::istream& in): student(0) { read(in); }
-    Student_handle(const Student_handle&);
-    Student_handle& operator=(const Student_handle&);
-    ~Student_handle() { delete student; }
+    Student_info(): student(0) { }
+    Student_info(std::istream& in): student(0) { read(in); }
+    Student_info(const Student_info&);
+    Student_info& operator=(const Student_info&);
+    ~Student_info() { delete student; }
     
     // Operations
     std::istream& read(std::istream&);
@@ -35,14 +35,14 @@ public:
         else throw std::runtime_error("Uninitialized Student");
     }
     
-    static bool compare(const Student_handle& s1, const Student_handle& s2) {
+    static bool compare(const Student_info& s1, const Student_info& s2) {
         return s1.name() < s2.name();
     }
     
 private:
-    Student_info* student;
+    Student_core* student;
    
 
 };
 
-#endif /* Student_handle_hpp */
+#endif /* Student_info_hpp */
